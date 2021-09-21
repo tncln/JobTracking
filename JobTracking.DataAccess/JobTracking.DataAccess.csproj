@@ -8,4 +8,9 @@
     <ProjectReference Include="..\JobTracking.Entity\JobTracking.Entity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Concrete\" />
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
 </Project>
