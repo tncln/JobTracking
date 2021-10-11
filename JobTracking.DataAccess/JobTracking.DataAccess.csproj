@@ -9,8 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Concrete\" />
-    <Folder Include="Interfaces\" />
+    <Folder Include="Concrete\EntityFrameworkCore\Contexts\" />
   </ItemGroup>
 
 </Project>
