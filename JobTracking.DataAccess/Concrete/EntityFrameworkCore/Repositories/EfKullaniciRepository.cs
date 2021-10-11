@@ -6,29 +6,29 @@ using System.Text;
 
 namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
-    public class EfCalismaRepository : ICalismaDal
+    public class EfKullaniciRepository : IKullaniciDal
     {
-        public List<Calisma> Getirhepsi()
+        public List<Kullanici> Getirhepsi()
         {
             throw new NotImplementedException();
         }
 
-        public Calisma GetirIdile(int id)
+        public Kullanici GetirIdile(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Guncelle(Calisma tablo)
+        public void Guncelle(Kullanici tablo)
         {
             throw new NotImplementedException();
         }
 
-        public void Kaydet(Calisma talo)
+        public void Kaydet(Kullanici talo)
         {
             throw new NotImplementedException();
         }
 
-        public void Sil(Calisma tablo)
+        public void Sil(Kullanici tablo)
         {
             throw new NotImplementedException();
         }
