@@ -9,8 +9,6 @@ namespace JobTracking.Entity.Concrete
     {
         public int Id { get; set; }
         public string Ad { get; set; }
-
-
         public string Soyadi { get; set; }
         public string Email { get; set; }
         public string Telefon { get; set; }
