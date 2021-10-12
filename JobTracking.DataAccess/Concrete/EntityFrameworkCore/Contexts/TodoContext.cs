@@ -18,5 +18,6 @@ namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Contexts
         }
         public DbSet<Kullanici> Kullanicilar { get; set; }
         public DbSet<Calisma> Calismalar { get; set; }
+
     }
 }
