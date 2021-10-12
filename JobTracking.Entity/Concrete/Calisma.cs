@@ -14,6 +14,7 @@ namespace JobTracking.Entity.Concrete
         public int Id { get; set; }
 
 
+
         [Required]
         [MaxLength(100)]
         public string Ad { get; set; }
