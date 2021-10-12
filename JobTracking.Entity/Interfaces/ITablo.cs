@@ -4,7 +4,7 @@ using System.Text;
 
 namespace JobTracking.Entity.Interfaces
 {
-    public interface ITablo
+    public  interface ITablo
     {
     }
 }
