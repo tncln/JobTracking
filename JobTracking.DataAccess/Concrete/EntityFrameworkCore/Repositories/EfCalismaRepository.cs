@@ -1,7 +1,9 @@
-﻿using JobTracking.DataAccess.Interfaces;
+﻿using JobTracking.DataAccess.Concrete.EntityFrameworkCore.Contexts;
+using JobTracking.DataAccess.Interfaces;
 using JobTracking.Entity.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories
@@ -10,27 +12,47 @@ namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories
     {
         public List<Calisma> Getirhepsi()
         {
-            throw new NotImplementedException();
+            using (var context=new TodoContext())
+            {
+                return context.Calismalar.ToList();
+            }
         }
 
         public Calisma GetirIdile(int id)
         {
-            throw new NotImplementedException();
+            using (var context = new TodoContext())
+            {
+                return context.Calismalar.Find(id);
+            }
         }
 
         public void Guncelle(Calisma tablo)
         {
-            throw new NotImplementedException();
+            using (var context = new TodoContext())
+            {
+                //Diğer yöntem sıkıntısı: tüm kolonları günceller. Gereksiz performans harcaması  
+                //context.Calismalar.Update(tablo);
+                context.Entry(tablo).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                context.SaveChanges();
+            }
         }
 
-        public void Kaydet(Calisma talo)
+        public void Kaydet(Calisma tablo)
         {
-            throw new NotImplementedException();
+            using (var context = new TodoContext())
+            {
+                context.Calismalar.Add(tablo);
+                context.SaveChanges();
+            }
         }
 
         public void Sil(Calisma tablo)
         {
-            throw new NotImplementedException();
+            using (var context = new TodoContext())
+            {
+                context.Calismalar.Remove(tablo);
+                context.SaveChanges();
+            }
         }
     }
 }
