@@ -8,8 +8,4 @@
     <ProjectReference Include="..\JobTracking.DataAccess\JobTracking.DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Concrete\" />
-  </ItemGroup>
-
 </Project>
