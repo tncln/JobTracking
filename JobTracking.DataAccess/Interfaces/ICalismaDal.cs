@@ -7,7 +7,7 @@ namespace JobTracking.DataAccess.Interfaces
 {
     public interface ICalismaDal
     {
-        void Kaydet(Calisma talo);
+        void Kaydet(Calisma tablo);
         void Sil(Calisma tablo);
         void Guncelle(Calisma tablo);
         Calisma GetirIdile(int id);
