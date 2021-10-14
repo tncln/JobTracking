@@ -5,12 +5,8 @@ using System.Text;
 
 namespace JobTracking.DataAccess.Interfaces
 {
-    public interface IKullaniciDal
+    public interface IKullaniciDal:IGenericDal<Kullanici>
     {
-        void Kaydet(Kullanici talo);
-        void Sil(Kullanici tablo);
-        void Guncelle(Kullanici tablo);
-        Kullanici GetirIdile(int id);
-        List<Kullanici> Getirhepsi();
+       
     }
 }

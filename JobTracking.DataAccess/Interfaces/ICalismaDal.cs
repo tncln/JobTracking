@@ -5,12 +5,8 @@ using System.Text;
 
 namespace JobTracking.DataAccess.Interfaces
 {
-    public interface ICalismaDal
+    public interface ICalismaDal:IGenericDal<Calisma>
     {
-        void Kaydet(Calisma tablo);
-        void Sil(Calisma tablo);
-        void Guncelle(Calisma tablo);
-        Calisma GetirIdile(int id);
-        List<Calisma> Getirhepsi();
+        
     }
 }
