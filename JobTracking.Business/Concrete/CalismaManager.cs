@@ -34,6 +34,7 @@ namespace JobTracking.Business.Concrete
             efCalismaRepository.Kaydet(tablo);
         }
 
+
         public void Sil(Calisma tablo)
         {
             efCalismaRepository.Sil(tablo);
