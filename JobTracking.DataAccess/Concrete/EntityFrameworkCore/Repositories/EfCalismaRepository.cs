@@ -8,7 +8,7 @@ using System.Text;
 
 namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
-    public class EfCalismaRepository :IGenericRepository<Calisma>, ICalismaDal
+    public class EfCalismaRepository :GenericRepository<Calisma>, ICalismaDal
     {
        
     }

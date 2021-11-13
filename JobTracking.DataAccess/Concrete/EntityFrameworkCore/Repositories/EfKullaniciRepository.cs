@@ -8,7 +8,7 @@ using System.Text;
 
 namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
-    public class EfKullaniciRepository :IGenericRepository<Kullanici>, IKullaniciDal
+    public class EfKullaniciRepository :GenericRepository<Kullanici>, IKullaniciDal
     {
        
     }

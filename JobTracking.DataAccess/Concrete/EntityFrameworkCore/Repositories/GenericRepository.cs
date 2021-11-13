@@ -8,7 +8,7 @@ using System.Text;
 
 namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
-    public class IGenericRepository<Tablo> : IGenericDal<Tablo> where Tablo : class, ITablo, new()
+    public class GenericRepository<Tablo> : IGenericDal<Tablo> where Tablo : class, ITablo, new()
     {
         public List<Tablo> Getirhepsi()
         {
