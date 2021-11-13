@@ -7,6 +7,6 @@ namespace JobTracking.DataAccess.Interfaces
 {
     public interface IKullaniciDal:IGenericDal<Kullanici>
     {
-       
+       //Kullanıcı
     }
 }
