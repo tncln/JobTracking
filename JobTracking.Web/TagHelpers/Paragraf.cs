@@ -11,7 +11,7 @@ namespace JobTracking.Web.TagHelpers
     [HtmlTargetElement("adem")]
     public class Paragraf:TagHelper
     {
-        
+        public string GelenData { get; set; } = "Adem Tunçalın";
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             //string data 
@@ -31,10 +31,9 @@ namespace JobTracking.Web.TagHelpers
             //var stringBuilder = new StringBuilder();
             //stringBuilder.AppendFormat("<p><b> {0} </b></p>", "Adem Tunçalın");
             //output.Content.SetHtmlContent(stringBuilder.ToString());
-            #endregion
-            string disardangelen = "Adem Tunçalın";
+            #endregion 
             string data = string.Empty;
-            data="<p><b>"+disardangelen+"</b></p>";
+            data="<p><b>"+GelenData+"</b></p>";
             output.Content.SetHtmlContent(data);
             base.Process(context, output);
 
