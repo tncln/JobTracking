@@ -1,3 +1,4 @@
+using JobTracking.Web.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -41,11 +42,7 @@ namespace JobTracking.Web
             }
 
             app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider=new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),"node_modules")),
-                 RequestPath="/content"
-            });
+            app.UseCustomStaticFile();
             app.UseRouting();
 
             app.UseAuthorization();
