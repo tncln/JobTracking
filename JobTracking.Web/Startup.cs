@@ -1,3 +1,4 @@
+using JobTracking.Web.Constraints;
 using JobTracking.Web.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -50,6 +51,18 @@ namespace JobTracking.Web
 
             app.UseEndpoints(endpoints =>
             {
+                //csharp, java haricinde kabul etmek istemiyorsak constraint ile kýsýtlýyoruz. 
+                endpoints.MapControllerRoute(
+                    name:"programlamaRoute",
+                    pattern: "programlama/{dil}",
+                    defaults:new {controller="Home",action="Index" },
+                    constraints: new {dil=new Programlama()}
+                    );
+                endpoints.MapControllerRoute(
+                    name: "kisi",
+                    pattern: "kisiler",
+                    defaults:new {controller="Home",action="Index"}
+                    );
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}"
