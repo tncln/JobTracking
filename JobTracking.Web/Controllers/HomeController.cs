@@ -24,5 +24,17 @@ namespace JobTracking.Web.Controllers
         {
             return View();
         }
+        public void SetCookie()
+        {
+            HttpContext.Response.Cookies.Append("kisi", "Adem", new Microsoft.AspNetCore.Http.CookieOptions() {
+             Expires=DateTime.Now.AddDays(20),
+             HttpOnly=true,//Javascript e karşı kapatmış oluruz XSS açıklarına karşı koruma
+             SameSite=Microsoft.AspNetCore.Http.SameSiteMode.Strict //İlgili web sayfası görebilir  
+            });
+        }
+        public string GetCookie()
+        {
+            return HttpContext.Request.Cookies["kisi"];
+        }
     }
 }
