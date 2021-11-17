@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JobTracking.Web.CustomFilters;
+using JobTracking.Web.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +18,9 @@ namespace JobTracking.Web.Controllers
         {
             return View();
         }
+        [AdAdemOlamaz]
         [HttpPost]
-        public IActionResult KayitOl2()
+        public IActionResult KayitOl2(KullaniciKayitViewModal model)
         {
             return View();
         }
