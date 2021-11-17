@@ -51,6 +51,18 @@ namespace JobTracking.Web
 
             app.UseEndpoints(endpoints =>
             {
+                //Area þema
+                //endpoints.MapControllerRoute(
+                //    name:"areaAdmin",
+                //    areaName:"Admin",
+                //    pattern:"{area}/{controller}/{action}"
+                //    );
+                endpoints.MapControllerRoute(
+                    name:"areas",
+                    pattern:"{area}/{controller=Home}/{action=Index}/{id?}"
+                    );
+
+
                 //csharp, java haricinde kabul etmek istemiyorsak constraint ile kýsýtlýyoruz. 
                 endpoints.MapControllerRoute(
                     name:"programlamaRoute",
