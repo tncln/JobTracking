@@ -15,12 +15,15 @@ namespace JobTracking.Web.CustomExtensions
             string gelenData = JsonConvert.SerializeObject(deger);
             session.SetString(key, gelenData);
         }
-        public static object GetObject(this ISession session,string key)
+        public static T GetObject<T>(this ISession session,string key)
+            where T:class,new() ///Önemli return değeri dönerken null dediğimizde tanımlamaz isek hata verir 
+                                //çünkü tipini bilmiyor  O yüzden tanımlıyoruz.
+                                //Tipi class ve new lenebilir olduğunu burada belirtiyoruz ki hata olmasın 
         {
             var gelenData= session.GetString(key);
             if (gelenData != null)
             {
-               return JsonConvert.DeserializeObject<object>(gelenData);
+               return JsonConvert.DeserializeObject<T>(gelenData);
             }
             return null;
         }

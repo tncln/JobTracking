@@ -1,4 +1,5 @@
-﻿using JobTracking.Web.CustomFilters;
+﻿using JobTracking.Web.CustomExtensions;
+using JobTracking.Web.CustomFilters;
 using JobTracking.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,11 +40,12 @@ namespace JobTracking.Web.Controllers
         }
         public void SetSession()
         {
-            HttpContext.Session.SetString("kisi","adem");
+            HttpContext.Session.SetObject("kisi", new KullaniciKayitViewModal() { Ad = "Adem", Soyad="Tunçalın" });
+           // HttpContext.Session.SetString("kisi","adem");
         }
-        public string GetSession()
+        public KullaniciKayitViewModal GetSession()
         {
-            return HttpContext.Session.GetString("kisi");
+            return HttpContext.Session.GetObject<KullaniciKayitViewModal>("kisi");
         }
     }
 }
