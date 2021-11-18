@@ -1,5 +1,6 @@
 ﻿using JobTracking.Web.CustomFilters;
 using JobTracking.Web.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,14 @@ namespace JobTracking.Web.Controllers
         public string GetCookie()
         {
             return HttpContext.Request.Cookies["kisi"];
+        }
+        public void SetSession()
+        {
+            HttpContext.Session.SetString("kisi","adem");
+        }
+        public string GetSession()
+        {
+            return HttpContext.Session.GetString("kisi");
         }
     }
 }
