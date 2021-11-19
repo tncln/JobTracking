@@ -1,6 +1,7 @@
 ﻿using JobTracking.Web.CustomExtensions;
 using JobTracking.Web.CustomFilters;
 using JobTracking.Web.Models;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -46,6 +47,22 @@ namespace JobTracking.Web.Controllers
         public KullaniciKayitViewModal GetSession()
         {
             return HttpContext.Session.GetObject<KullaniciKayitViewModal>("kisi");
+        }
+        public IActionResult PageError(int code)
+        {
+            return View();
+        }
+        public IActionResult Error()
+        {
+            var exceptionHandlerPathFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            //Hatanın oluştuğu yer
+            ViewBag.path= exceptionHandlerPathFeature.Path;
+            ViewBag.message = exceptionHandlerPathFeature.Error.Message; 
+            return View();
+        }
+        public IActionResult Hata()
+        {
+            throw new Exception("Hata Oluştu");
         }
     }
 }

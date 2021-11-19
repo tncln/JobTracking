@@ -40,13 +40,14 @@ namespace JobTracking.Web
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseStaticFiles();
             app.UseCustomStaticFile();
             app.UseRouting();
-
+            //Hata Sayfasý yönetimi 
+            app.UseStatusCodePagesWithReExecute("/Home/PageError", "?code={0}");
             app.UseAuthorization();
             app.UseSession();
 
