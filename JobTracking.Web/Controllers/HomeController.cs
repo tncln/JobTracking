@@ -55,6 +55,12 @@ namespace JobTracking.Web.Controllers
         public IActionResult Error()
         {
             var exceptionHandlerPathFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+
+            CustomLogger.NLogLogger nloglogger= new  CustomLogger.NLogLogger();
+            nloglogger.LogWithNLog($"Hatanın oluştuğu yer {exceptionHandlerPathFeature.Path} " +
+                $"\n Hata Mesajı" +
+                $" {exceptionHandlerPathFeature.Error.Message} \n" +
+                $"stack trace {exceptionHandlerPathFeature.Error.StackTrace}");
             //Hatanın oluştuğu yer
             ViewBag.path= exceptionHandlerPathFeature.Path;
             ViewBag.message = exceptionHandlerPathFeature.Error.Message; 
