@@ -25,7 +25,7 @@ namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Contexts
             modelBuilder.ApplyConfiguration(new CalismaMap());
             base.OnModelCreating(modelBuilder);
         } 
-        public DbSet<Gorev> Calismalar { get; set; }
+        public DbSet<Gorev> Gorevler { get; set; }
 
         //Fluent Apiden farklı bir yöntem
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
