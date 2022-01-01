@@ -1,5 +1,6 @@
 ﻿using JobTracking.DataAccess.Concrete.EntityFrameworkCore.Mapping;
 using JobTracking.Entity.Concrete;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Contexts
 {
-    public class TodoContext:DbContext
+    public class TodoContext:IdentityDbContext<AppUser,AppRole,int>
     {
         //public TodoContext():base()
         //{
@@ -15,16 +16,16 @@ namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Contexts
         //}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=.; database=Todo; integrated security=true;");
+            optionsBuilder.UseSqlServer("server=.; database=JobTracking; integrated security=true;");
+            base.OnConfiguring(optionsBuilder);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Fluent api Mapping tablosundaki işlemler Create edildi tanımlandı. 
-            modelBuilder.ApplyConfiguration(new KullaniciMap());
+            //Fluent api Mapping tablosundaki işlemler Create edildi tanımlandı.  
             modelBuilder.ApplyConfiguration(new CalismaMap());
-        }
-        public DbSet<Kullanici> Kullanicilar { get; set; }
-        public DbSet<Calisma> Calismalar { get; set; }
+            base.OnModelCreating(modelBuilder);
+        } 
+        public DbSet<Gorev> Calismalar { get; set; }
 
         //Fluent Apiden farklı bir yöntem
         //protected override void OnModelCreating(ModelBuilder modelBuilder)

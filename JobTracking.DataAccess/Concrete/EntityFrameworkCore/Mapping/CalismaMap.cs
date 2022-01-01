@@ -7,9 +7,9 @@ using System.Text;
 
 namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Mapping
 {
-    public class CalismaMap : IEntityTypeConfiguration<Calisma>
+    public class CalismaMap : IEntityTypeConfiguration<Gorev>
     {
-        public void Configure(EntityTypeBuilder<Calisma> builder)
+        public void Configure(EntityTypeBuilder<Gorev> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();

@@ -5,8 +5,8 @@ using System.Text;
 
 namespace JobTracking.DataAccess.Interfaces
 {
-    public interface IKullaniciDal:IGenericDal<Kullanici>
+    public interface IGorevDal:IGenericDal<Gorev>
     {
-       //Kullanıcı
+        
     }
 }
