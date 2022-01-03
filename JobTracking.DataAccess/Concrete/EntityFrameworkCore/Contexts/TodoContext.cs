@@ -23,10 +23,14 @@ namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Contexts
         {
             //Fluent api Mapping tablosundaki işlemler Create edildi tanımlandı.  
             modelBuilder.ApplyConfiguration(new GorevMap());
+            modelBuilder.ApplyConfiguration(new AciliyetMap());
+            modelBuilder.ApplyConfiguration(new RaporMap());
+            modelBuilder.ApplyConfiguration(new AppUserMap()); 
             base.OnModelCreating(modelBuilder);
         } 
         public DbSet<Gorev> Gorevler { get; set; }
         public DbSet<Aciliyet> Aciliyetler { get; set; }
+        public DbSet<Rapor> Raporlar { get; set; }
 
         //Fluent Apiden farklı bir yöntem
         //protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -21,5 +21,7 @@ namespace JobTracking.Entity.Concrete
 
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
+
+        public List<Rapor> Raporlar { get; set; }
     }
 }
