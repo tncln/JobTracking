@@ -15,6 +15,10 @@ namespace JobTracking.Entity.Concrete
         public string Aciklama { get; set; }
         public bool Durum { get; set; }
         public DateTime AciklamaTarihi { get; set; }
+
+        public int AciliyetId { get; set; }
+        public Aciliyet Aciliyet { get; set; }
+
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
     }

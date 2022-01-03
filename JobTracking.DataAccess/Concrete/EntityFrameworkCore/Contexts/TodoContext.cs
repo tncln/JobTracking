@@ -22,10 +22,11 @@ namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Fluent api Mapping tablosundaki işlemler Create edildi tanımlandı.  
-            modelBuilder.ApplyConfiguration(new CalismaMap());
+            modelBuilder.ApplyConfiguration(new GorevMap());
             base.OnModelCreating(modelBuilder);
         } 
         public DbSet<Gorev> Gorevler { get; set; }
+        public DbSet<Aciliyet> Aciliyetler { get; set; }
 
         //Fluent Apiden farklı bir yöntem
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
