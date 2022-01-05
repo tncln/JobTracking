@@ -1,5 +1,6 @@
 ﻿using JobTracking.Business.Interfaces;
 using JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories;
+using JobTracking.DataAccess.Interfaces;
 using JobTracking.Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,34 +10,34 @@ namespace JobTracking.Business.Concrete
 {
     public class AciliyetManager : IAciliyetService
     {
-        private readonly EfAciliyetRepository _efAciliyetRepository;
-        public AciliyetManager()
+        private readonly IAciliyetDal _aciliyetDal;
+        public AciliyetManager(IAciliyetDal aciliyetDal)
         {
-            _efAciliyetRepository = new EfAciliyetRepository();
+            _aciliyetDal = aciliyetDal;
         }
         public List<Aciliyet> Getirhepsi()
         {
-            return _efAciliyetRepository.Getirhepsi();
+            return _aciliyetDal.Getirhepsi();
         }
 
         public Aciliyet GetirIdile(int id)
         {
-            return _efAciliyetRepository.GetirIdile(id);
+            return _aciliyetDal.GetirIdile(id);
         }
 
         public void Guncelle(Aciliyet tablo)
         {
-            _efAciliyetRepository.Guncelle(tablo);
+            _aciliyetDal.Guncelle(tablo);
         }
 
         public void Kaydet(Aciliyet tablo)
         {
-            _efAciliyetRepository.Kaydet(tablo);
+            _aciliyetDal.Kaydet(tablo);
         }
 
         public void Sil(Aciliyet tablo)
         {
-            _efAciliyetRepository.Sil(tablo);
+            _aciliyetDal.Sil(tablo);
         }
     }
 }

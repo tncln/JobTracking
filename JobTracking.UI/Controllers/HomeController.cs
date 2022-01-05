@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JobTracking.Business.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,11 @@ namespace JobTracking.UI.Controllers
 {
     public class HomeController : Controller
     {
+        IGorevService _gorevService;
+        public HomeController(IGorevService gorevService)
+        {
+            _gorevService = gorevService;
+        }
         public IActionResult Index()
         {
             return View();

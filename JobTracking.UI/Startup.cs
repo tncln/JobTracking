@@ -1,3 +1,7 @@
+using JobTracking.Business.Concrete;
+using JobTracking.Business.Interfaces;
+using JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories;
+using JobTracking.DataAccess.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +26,17 @@ namespace JobTracking.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Business
+            services.AddScoped<IGorevService, GorevManager>();
+            services.AddScoped<IAciliyetService, AciliyetManager>();
+            services.AddScoped<IRaporService, RaporManager>();
+
+            //Dal
+            services.AddScoped<IGorevDal, EfGorevRepository>();
+            services.AddScoped<IAciliyetDal, EfAciliyetRepository>();
+            services.AddScoped<IRaporDal, EfRaporRepository>();
+
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

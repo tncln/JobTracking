@@ -1,5 +1,6 @@
 ﻿using JobTracking.Business.Interfaces;
 using JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories;
+using JobTracking.DataAccess.Interfaces;
 using JobTracking.Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,35 +10,35 @@ namespace JobTracking.Business.Concrete
 {
     public class RaporManager : IRaporService
     {
-        private readonly EfRaporRepository _raporRepository;
-        public RaporManager()
+        private readonly IRaporDal _raporDal;
+        public RaporManager(IRaporDal raporDal)
         {
-            _raporRepository = new EfRaporRepository();
+            _raporDal = raporDal;
         }
         public List<Rapor> Getirhepsi()
         {
-            return _raporRepository.Getirhepsi();
+            return _raporDal.Getirhepsi();
                 
         }
 
         public Rapor GetirIdile(int id)
         {
-            return _raporRepository.GetirIdile(id);
+            return _raporDal.GetirIdile(id);
         }
 
         public void Guncelle(Rapor tablo)
         {
-            _raporRepository.Guncelle(tablo);
+            _raporDal.Guncelle(tablo);
         }
 
         public void Kaydet(Rapor tablo)
         {
-            _raporRepository.Kaydet(tablo);
+            _raporDal.Kaydet(tablo);
         }
 
         public void Sil(Rapor tablo)
         {
-            _raporRepository.Sil(tablo);
+            _raporDal.Sil(tablo);
         }
     }
 }

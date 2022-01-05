@@ -1,5 +1,6 @@
 ﻿using JobTracking.Business.Interfaces;
 using JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories;
+using JobTracking.DataAccess.Interfaces;
 using JobTracking.Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,35 +10,35 @@ namespace JobTracking.Business.Concrete
 {
     public class GorevManager : IGorevService
     {
-        private readonly EfGorevRepository efCalismaRepository;
-        public GorevManager()
+        private readonly IGorevDal _gorevDal;
+        public GorevManager(IGorevDal gorevDal)
         {
-            efCalismaRepository = new EfGorevRepository();
+            _gorevDal = gorevDal;
         }
         public List<Gorev> Getirhepsi()
         {
-            return efCalismaRepository.Getirhepsi();
+            return _gorevDal.Getirhepsi();
         }
 
         public Gorev GetirIdile(int id)
         {
-            return efCalismaRepository.GetirIdile(id);
+            return _gorevDal.GetirIdile(id);
         }
 
         public void Guncelle(Gorev tablo)
         {
-            efCalismaRepository.Guncelle(tablo);
+            _gorevDal.Guncelle(tablo);
         }
 
         public void Kaydet(Gorev tablo)
         {
-            efCalismaRepository.Kaydet(tablo);
+            _gorevDal.Kaydet(tablo);
         }
 
 
         public void Sil(Gorev tablo)
         {
-            efCalismaRepository.Sil(tablo);
+            _gorevDal.Sil(tablo);
         }
     }
 }
