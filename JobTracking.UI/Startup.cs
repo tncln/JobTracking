@@ -1,7 +1,9 @@
 using JobTracking.Business.Concrete;
 using JobTracking.Business.Interfaces;
+using JobTracking.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories;
 using JobTracking.DataAccess.Interfaces;
+using JobTracking.Entity.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +38,8 @@ namespace JobTracking.UI
             services.AddScoped<IAciliyetDal, EfAciliyetRepository>();
             services.AddScoped<IRaporDal, EfRaporRepository>();
 
+            services.AddDbContext<TodoContext>();  
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<TodoContext>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
