@@ -47,5 +47,30 @@ namespace JobTracking.UI.Areas.Admin
             }
             return View(model);
         }
+        public IActionResult GuncelleAciliyet(int id)
+        {
+            var aciliyet= _aciliyetService.GetirIdile(id);
+            AciliyetUpdateViewModel model = new AciliyetUpdateViewModel
+            {
+                Id = aciliyet.Id,
+                Tanim = aciliyet.Tanim
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult GuncelleAciliyet(AciliyetUpdateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _aciliyetService.Guncelle(new Aciliyet
+                {
+                    Tanim = model.Tanim,
+                    Id = model.Id
+                });
+                return RedirectToAction("Index");
+            }
+            return View(model);
+
+        }
     }
 }

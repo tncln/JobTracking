@@ -12,6 +12,7 @@
         <thead>
             <tr>
                 <th>Tanım</th>
+                <th>İşlem</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,9 @@
             {
                 <tr>
                     <td>@item.Tanim</td>
+                    <td>
+                        <a asp-action="GuncelleAciliyet" asp-controller="Aciliyet" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Düzenle</a>
+                    </td>
                 </tr>
             }
         </tbody>
