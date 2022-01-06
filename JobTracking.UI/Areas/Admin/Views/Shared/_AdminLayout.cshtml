@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    string active = string.Empty;
+    if (TempData["Active"] != null)
+    {
+        active = TempData["Active"].ToString();
+    }
+   }
+
+<!DOCTYPE html>
 <html lang="tr">
 
 <head>
@@ -25,8 +33,8 @@
         <div class="border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">Admin Layout </div>
             <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action  active">Görev İşlemleri</a>
-                <a asp-action="Index" asp-controller="Aciliyet" class="list-group-item list-group-item-action ">Aciliyet İşlemleri</a>
+                <a href="#" class="list-group-item list-group-item-action  @(active=="gorev"?"active":"")">Görev İşlemleri</a>
+                <a asp-action="Index" asp-controller="Aciliyet" class="list-group-item list-group-item-action @(active=="aciliyet"?"active":"")">Aciliyet İşlemleri</a>
                 <a href="#" class="list-group-item list-group-item-action ">Overview</a>
                 <a href="#" class="list-group-item list-group-item-action ">Events</a>
                 <a href="#" class="list-group-item list-group-item-action ">Profile</a>
@@ -79,10 +87,11 @@
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    @RenderSection("JavaScript",false) 
+    @RenderSection("JavaScript", false)
 
     <!-- Menu Toggle Script -->
-    <script>$("#menu-toggle").click(function (e) {
+    <script>
+    $("#menu-toggle").click(function (e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });</script>

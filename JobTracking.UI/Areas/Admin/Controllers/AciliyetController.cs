@@ -19,6 +19,7 @@ namespace JobTracking.UI.Areas.Admin
         }
         public IActionResult Index()
         {
+            TempData["Active"] = "aciliyet";
             List<Aciliyet> aciliyetler= _aciliyetService.Getirhepsi();
 
             List<AciliyetListViewModel> model = new List<AciliyetListViewModel>();
@@ -33,6 +34,7 @@ namespace JobTracking.UI.Areas.Admin
         }
         public IActionResult EkleAciliyet()
         {
+            TempData["Active"] = "aciliyet";
             return View(new AciliyetAddViewModel());
         }
         [HttpPost]
@@ -49,6 +51,7 @@ namespace JobTracking.UI.Areas.Admin
         }
         public IActionResult GuncelleAciliyet(int id)
         {
+            TempData["Active"] = "aciliyet";
             var aciliyet= _aciliyetService.GetirIdile(id);
             AciliyetUpdateViewModel model = new AciliyetUpdateViewModel
             {
