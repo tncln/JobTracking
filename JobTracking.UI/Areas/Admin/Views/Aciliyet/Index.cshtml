@@ -3,32 +3,35 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
-<a asp-action="EkleAciliyet" asp-controller="Home" class="btn btn-sm btn-info my-2">Yeni Aciliyet Ekle</a>
+ 
 
 @if (Model.Count != 0)
 {
-<table class="table table-sm table-hover">
-    <thead>
-        <tr>
-            <th>Tanım</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <a asp-action="EkleAciliyet" asp-controller="Aciliyet" class="btn btn-sm btn-info my-2">Yeni Aciliyet Ekle</a>
+    <table class="table table-sm table-hover">
+        <thead>
             <tr>
-                <td>@item.Tanim</td>
+                <th>Tanım</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Tanim</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
 }
 else
 {
     <div class="text-center lead mt-4">
-        Sistemde kayıtlı aciliyet durumu bulunamadı
+        <p class="lead">
+            Sistemde kayıtlı aciliyet durumu bulunamadı
+        </p>
+        <a asp-action="EkleAciliyet" asp-controller="Aciliyet" class="btn btn-sm btn-info my-2">Yeni Aciliyet Ekle</a>
     </div>
 }
 
