@@ -14,7 +14,7 @@ namespace JobTracking.Entity.Concrete
         public string Ad { get; set; }
         public string Aciklama { get; set; }
         public bool Durum { get; set; }
-        public DateTime AciklamaTarihi { get; set; }
+        public DateTime AciklamaTarihi { get; set; } = DateTime.Now;
 
         public int AciliyetId { get; set; }
         public Aciliyet Aciliyet { get; set; }
