@@ -23,7 +23,7 @@
         <td>@item.OlusturmaTarihi.ToString("D")</td>
         <td>@item.Aciliyet.Tanim</td> 
         <td>
-            <a>Düzenle</a>
+            <a asp-action="GuncelleGorev" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Düzenle</a>
             <a>Sil</a>
         </td>
     </tr>

@@ -44,8 +44,8 @@ namespace JobTracking.UI.Areas.Admin.Controllers
         }
         public IActionResult EkleGorev()
         {
-            TempData["Active"] = "gorev"; 
-            ViewBag.Aciliyetler = new SelectList(_aciliyetService.Getirhepsi(),"Id","Tanim");
+            TempData["Active"] = "gorev";
+            ViewBag.Aciliyetler = new SelectList(_aciliyetService.Getirhepsi(), "Id", "Tanim");
             return View(new GorevAddViewModel());
         }
         [HttpPost]
@@ -57,7 +57,38 @@ namespace JobTracking.UI.Areas.Admin.Controllers
                 {
                     Ad = model.Ad,
                     AciliyetId = model.AciliyetId,
-                    Aciklama=model.Aciklama
+                    Aciklama = model.Aciklama
+                });
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+        public IActionResult GuncelleGorev(int id)
+        {
+            var gorev = _gorevService.GetirIdile(id);
+            GorevUpdateViewModel model = new GorevUpdateViewModel
+            {
+                Aciklama = gorev.Aciklama,
+                AciliyetId = gorev.AciliyetId,
+                Ad = gorev.Ad,
+                Id = gorev.Id
+            };
+            ViewBag.Aciliyetler = new SelectList(_aciliyetService.Getirhepsi(), "Id", "Tanim", gorev.AciliyetId);
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult GuncelleGorev(GorevUpdateViewModel model)
+        {
+            TempData["Active"] = "gorev";
+            if (ModelState.IsValid)
+            {
+                _gorevService.Guncelle(new Gorev()
+                {
+                    Id = model.Id,
+                    Aciklama = model.Aciklama,
+                    AciliyetId = model.AciliyetId,
+                    Ad = model.Ad
+
                 });
                 return RedirectToAction("Index");
             }
