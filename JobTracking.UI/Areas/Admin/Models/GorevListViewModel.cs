@@ -13,7 +13,7 @@ namespace JobTracking.UI.Areas.Admin.Models
         public string Ad { get; set; }
         public string Aciklama { get; set; }
         public bool Durum { get; set; }
-        public DateTime AciklamaTarihi { get; set; }
+        public DateTime OlusturmaTarihi { get; set; }
 
         public int AciliyetId { get; set; }
         public Aciliyet Aciliyet { get; set; }

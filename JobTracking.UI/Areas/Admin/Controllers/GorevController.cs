@@ -23,14 +23,14 @@ namespace JobTracking.UI.Areas.Admin.Controllers
         public IActionResult Index()
         {
             TempData["Active"] = "gorev";
-            List<Gorev> gorevler = _gorevService.Getirhepsi();
+            List<Gorev> gorevler = _gorevService.GetirAciliyetIleTamamlanmayan();
             List<GorevListViewModel> models = new List<GorevListViewModel>();
             foreach (var item in gorevler)
             {
                 GorevListViewModel model = new GorevListViewModel()
                 {
                     Aciklama = item.Aciklama,
-                    AciklamaTarihi = item.AciklamaTarihi,
+                    OlusturmaTarihi = item.OlusturulmaTarihi,
                     Aciliyet = item.Aciliyet,
                     AciliyetId = item.AciliyetId,
                     Ad = item.Ad,
