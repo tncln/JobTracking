@@ -24,7 +24,7 @@
                 <td>@item.Aciliyet.Tanim</td>
                 <td>
                     <a asp-action="GuncelleGorev" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Düzenle</a>
-                    <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Sil</a>
+                    <a href="" data-bs-toggle="modal" data-bs-target="#silmeEkrani" data-adem="@item.Id">Sil</a>
                 </td>
             </tr>
         }
@@ -39,26 +39,51 @@ else
         <a asp-action="EkleGorev" class="btn btn-info btn-sm">Yeni Görev Oluştur</a>
     </div>
 }
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-</button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="silmeEkrani" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Uyarı !!</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                Silmek İstediğinizden Emin misiniz?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır Vazgeç</button>
+                <button id="btnSil" type="button" class="btn btn-primary">Evet Sil</button>
             </div>
         </div>
     </div>
 </div>
+
+@section JavaScript{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#silmeEkrani").on("show.bs.modal", function (event) {
+                let tetikleyenElement = $(event.relatedTarget);
+                let id = tetikleyenElement.data("adem");
+
+                $("#btnSil").click(function () {
+                    $.ajax({
+                        type: "Get",
+                        url: "./Gorev/SilGorev",
+                        data: { id: id },
+                        dataType: "json",
+                        contentType: "application/json; charset=uf-8;",
+                        success: function () {
+                            //alert("İşlem Tamam");
+                            window.location.reload(); // Sİlme gerçekleşirse sayfayı yenile..
+                        },
+                        error: function (error) {
+                            alert(error.statusText);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+}

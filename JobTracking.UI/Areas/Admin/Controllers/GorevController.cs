@@ -94,5 +94,10 @@ namespace JobTracking.UI.Areas.Admin.Controllers
             }
             return View(model);
         }
+        public IActionResult SilGorev(int id)
+        {
+            _gorevService.Sil(new Gorev { Id=id });
+            return Json(null);
+        }
     }
 }
