@@ -18,5 +18,9 @@ namespace JobTracking.UI.Controllers
         {
             return View();
         }
+        public IActionResult KayitOl()
+        {
+            return View();
+        }
     }
 }
