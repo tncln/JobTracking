@@ -49,6 +49,15 @@ namespace JobTracking.UI
             })
                 .AddEntityFrameworkStores<TodoContext>();
 
+
+            services.ConfigureApplicationCookie(opt => {
+                opt.Cookie.Name = "JobTrackingCookie";
+                opt.Cookie.HttpOnly = true;
+                opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+                opt.ExpireTimeSpan = TimeSpan.FromDays(20);
+                opt.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest;
+                opt.LoginPath = "/Home/Index";
+            });
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
