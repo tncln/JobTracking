@@ -1,6 +1,7 @@
 ﻿using JobTracking.Business.Interfaces;
 using JobTracking.Entity.Concrete;
 using JobTracking.UI.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace JobTracking.UI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class GorevController : Controller
     {

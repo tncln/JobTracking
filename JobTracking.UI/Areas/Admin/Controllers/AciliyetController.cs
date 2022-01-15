@@ -1,6 +1,7 @@
 ﻿using JobTracking.Business.Interfaces;
 using JobTracking.Entity.Concrete;
 using JobTracking.UI.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace JobTracking.UI.Areas.Admin
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class AciliyetController : Controller
     {

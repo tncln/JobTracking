@@ -5,9 +5,8 @@ using System.Text;
 
 namespace JobTracking.DataAccess.Interfaces
 {
-    public interface IGorevDal:IGenericDal<Gorev>
+    public interface IAppUserDal:IGenericDal<AppUser>
     {
-        List<Gorev> GetirAciliyetIleTamamlanmayan();
-
+        List<AppUser> GetNotAdmin();
     }
 }
