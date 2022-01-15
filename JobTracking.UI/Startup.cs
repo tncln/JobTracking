@@ -78,6 +78,9 @@ namespace JobTracking.UI
 
             app.UseRouting();
 
+            app.UseAuthorization();
+            app.UseAuthorization();
+
             IdentityInitializer.SeedData(userManager, roleManager).Wait();
 
             app.UseAuthorization();
