@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace JobTracking.DataAccess.Interfaces
+namespace JobTracking.Business.Interfaces
 {
-    public interface IAppUserDal
+    public interface IAppUserService
     {
         List<AppUser> GetNotAdmin();
     }
