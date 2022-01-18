@@ -42,5 +42,17 @@ namespace JobTracking.UI.Areas.Admin.Controllers
             }
             return View(models);
         }
+
+        public IActionResult AtaPersonel(int id)
+        {
+            var  gorev = _gorevService.GetirAciliyetIdile(id);
+            GorevListViewModel model = new GorevListViewModel();
+            model.Id = gorev.Id;
+            model.Ad = gorev.Ad;
+            model.Aciklama = gorev.Aciklama;
+            model.Aciliyet = gorev.Aciliyet;
+            model.OlusturmaTarihi = gorev.OlusturulmaTarihi;
+            return View(model);
+        }
     }
 }

@@ -18,5 +18,10 @@ namespace JobTracking.Business.Concrete
         {
             return _userDal.GetNotAdmin();
         }
+
+        public List<AppUser> GetNotAdmin(string aranacakKelime, int aktifSayfa = 1)
+        {
+            return _userDal.GetNotAdmin(aranacakKelime, aktifSayfa);
+        }
     }
 }
