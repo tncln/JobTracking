@@ -16,6 +16,11 @@ namespace JobTracking.Business.Concrete
             _gorevDal = gorevDal;
         }
 
+        public Gorev GetirAciliyetIdile(int id)
+        {
+            return _gorevDal.GetirAciliyetIdile(id);
+        }
+
         public List<Gorev> GetirAciliyetIleTamamlanmayan()
         {
             return _gorevDal.GetirAciliyetIleTamamlanmayan();

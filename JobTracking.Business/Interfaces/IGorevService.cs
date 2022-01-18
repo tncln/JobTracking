@@ -9,5 +9,6 @@ namespace JobTracking.Business.Interfaces
     {
         List<Gorev> GetirAciliyetIleTamamlanmayan();
         List<Gorev> GetirTumTablolarla();
+        Gorev GetirAciliyetIdile(int id);
     }
 }
