@@ -43,16 +43,33 @@ namespace JobTracking.UI.Areas.Admin.Controllers
             return View(models);
         }
 
-        public IActionResult AtaPersonel(int id)
+        public IActionResult AtaPersonel(int id,string s,int sayfa=1)
         {
+            TempData["Active"] = "isemri";
             var  gorev = _gorevService.GetirAciliyetIdile(id);
-            GorevListViewModel model = new GorevListViewModel();
-            model.Id = gorev.Id;
-            model.Ad = gorev.Ad;
-            model.Aciklama = gorev.Aciklama;
-            model.Aciliyet = gorev.Aciliyet;
-            model.OlusturmaTarihi = gorev.OlusturulmaTarihi;
-            return View(model);
+
+            var personeller = _appUserService.GetNotAdmin(s,sayfa);
+            List<AppUserListViewModel> appUserListModel = new List<AppUserListViewModel>();
+            foreach (var item in personeller)
+            {
+                AppUserListViewModel model = new AppUserListViewModel();
+                model.Id = item.Id;
+                model.Name = item.Name;
+                model.SurName = item.Surname;
+                model.Email = item.Email;
+                model.Picture = item.Picture;
+                appUserListModel.Add(model);
+            }
+
+            ViewBag.Personeller = personeller;
+
+            GorevListViewModel gorevModel = new GorevListViewModel();
+            gorevModel.Id = gorev.Id;
+            gorevModel.Ad = gorev.Ad;
+            gorevModel.Aciklama = gorev.Aciklama;
+            gorevModel.Aciliyet = gorev.Aciliyet;
+            gorevModel.OlusturmaTarihi = gorev.OlusturulmaTarihi;
+            return View(gorevModel);
         }
     }
 }

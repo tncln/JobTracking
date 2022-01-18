@@ -74,7 +74,7 @@ namespace JobTracking.UI.Controllers
                    var addRoleResult= await _userManager.AddToRoleAsync(user, "Member");
                     if (addRoleResult.Succeeded)
                     {
-                        return RedirectToAction("GirisYap");
+                        return RedirectToAction("Index");
                     }
                     else
                     {
