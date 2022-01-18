@@ -31,6 +31,11 @@ namespace JobTracking.Business.Concrete
             return _gorevDal.GetirIdile(id);
         }
 
+        public List<Gorev> GetirTumTablolarla()
+        {
+            return _gorevDal.GetirTumTablolarla();
+        }
+
         public void Guncelle(Gorev tablo)
         {
             _gorevDal.Guncelle(tablo);

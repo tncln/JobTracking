@@ -18,5 +18,14 @@ namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories
                 return context.Gorevler.Include(x => x.Aciliyet).Where(x => !x.Durum).OrderByDescending(x => x.OlusturulmaTarihi).ToList();
             }
         }
+
+        public List<Gorev> GetirTumTablolarla()
+        {
+            using (var context = new TodoContext())
+            {
+                return context.Gorevler.Include(x => x.Aciliyet).Include(I=>I.Raporlar).Include(I=>I.AppUser)
+                    .Where(x => !x.Durum).OrderByDescending(x => x.OlusturulmaTarihi).ToList();
+            }
+        }
     }
 }
