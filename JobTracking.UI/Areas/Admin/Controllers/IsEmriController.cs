@@ -46,7 +46,11 @@ namespace JobTracking.UI.Areas.Admin.Controllers
         public IActionResult AtaPersonel(int id,string s,int sayfa=1)
         {
             TempData["Active"] = "isemri";
+            ViewBag.AktifSayfa = sayfa;
+            ViewBag.ToplamSayfa = (int)Math.Ceiling((double)_appUserService.GetNotAdmin().Count / 3);
+
             var  gorev = _gorevService.GetirAciliyetIdile(id);
+                      
 
             var personeller = _appUserService.GetNotAdmin(s,sayfa);
             List<AppUserListViewModel> appUserListModel = new List<AppUserListViewModel>();
