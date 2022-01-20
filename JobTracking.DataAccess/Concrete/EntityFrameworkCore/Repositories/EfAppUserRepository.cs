@@ -35,7 +35,7 @@ namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories
                 UserName=I.user.UserName
             }).ToList();
         }
-        public List<AppUser> GetNotAdmin(string aranacakKelime,int aktifSayfa=1)
+        public List<AppUser> GetNotAdmin(out int toplamSayfa,string aranacakKelime,int aktifSayfa=1)
         { 
             using var context = new TodoContext();
             var result= context.Users.Join(context.UserRoles, user => user.Id, userRole => userRole.UserId, (resultUser, resultUserRole) =>
@@ -57,10 +57,14 @@ namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories
                 Email = I.user.Email,
                 UserName = I.user.UserName
             });
+
+            toplamSayfa =(int)Math.Ceiling( (double)result.Count()/3);
+
             if (!string.IsNullOrWhiteSpace(aranacakKelime))
             {
                 result.Where(x => x.Name.ToLower()
                 .Contains(aranacakKelime.ToLower()) || x.Surname.ToLower().Contains(aranacakKelime.ToLower()));
+                toplamSayfa = (int)Math.Ceiling((double)result.Count() / 3);
             }
             result= result.Skip((aktifSayfa - 1) * 3).Take(3);
 

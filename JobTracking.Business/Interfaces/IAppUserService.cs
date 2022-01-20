@@ -8,6 +8,6 @@ namespace JobTracking.Business.Interfaces
     public interface IAppUserService
     {
         List<AppUser> GetNotAdmin();
-        List<AppUser> GetNotAdmin(string aranacakKelime, int aktifSayfa);
+        List<AppUser> GetNotAdmin(out int toplamSayfa, string aranacakKelime, int aktifSayfa = 1);
     }
 }

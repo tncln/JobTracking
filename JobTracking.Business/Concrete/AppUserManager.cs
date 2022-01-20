@@ -19,9 +19,9 @@ namespace JobTracking.Business.Concrete
             return _userDal.GetNotAdmin();
         }
 
-        public List<AppUser> GetNotAdmin(string aranacakKelime, int aktifSayfa)
+        public List<AppUser> GetNotAdmin(out int toplamSayfa,string aranacakKelime, int aktifSayfa)
         {
-            return _userDal.GetNotAdmin(aranacakKelime, aktifSayfa);
+            return _userDal.GetNotAdmin(out toplamSayfa,aranacakKelime, aktifSayfa);
         }
     }
 }

@@ -47,12 +47,16 @@ namespace JobTracking.UI.Areas.Admin.Controllers
         {
             TempData["Active"] = "isemri";
             ViewBag.AktifSayfa = sayfa;
-            ViewBag.ToplamSayfa = (int)Math.Ceiling((double)_appUserService.GetNotAdmin().Count / 3);
+            //ViewBag.ToplamSayfa = (int)Math.Ceiling((double)_appUserService.GetNotAdmin().Count / 3);
+            int toplamSaya;
 
-            var  gorev = _gorevService.GetirAciliyetIdile(id);
+            var gorev = _gorevService.GetirAciliyetIdile(id);
                       
 
-            var personeller = _appUserService.GetNotAdmin(s,sayfa);
+            var personeller = _appUserService.GetNotAdmin(out toplamSaya, s,sayfa);
+
+            ViewBag.ToplamSayfa = toplamSaya;
+
             List<AppUserListViewModel> appUserListModel = new List<AppUserListViewModel>();
             foreach (var item in personeller)
             {
