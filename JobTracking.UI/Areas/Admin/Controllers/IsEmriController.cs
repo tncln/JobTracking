@@ -48,6 +48,8 @@ namespace JobTracking.UI.Areas.Admin.Controllers
             TempData["Active"] = "isemri";
             ViewBag.AktifSayfa = sayfa;
             //ViewBag.ToplamSayfa = (int)Math.Ceiling((double)_appUserService.GetNotAdmin().Count / 3);
+            ViewBag.Aranan = s;
+
             int toplamSaya;
 
             var gorev = _gorevService.GetirAciliyetIdile(id);
