@@ -10,7 +10,7 @@ namespace JobTracking.Entity.Concrete
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string Picture { get; set; }
+        public string Picture { get; set; } = "default.png";
 
         public List<Gorev> Gorevler { get; set; }
     }
