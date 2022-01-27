@@ -84,8 +84,17 @@ namespace JobTracking.UI.Areas.Admin.Controllers
             gorevModel.OlusturmaTarihi = gorev.OlusturulmaTarihi;
             return View(gorevModel);
         }
+        [HttpPost]
+        public IActionResult AtaPersonel(PersonelGorevlendirViewModel model)
+        {
+            var guncellenecekGorev= _gorevService.GetirIdile(model.GorevId);
+            guncellenecekGorev.AppUserId = model.PersonelId;
+            _gorevService.Guncelle(guncellenecekGorev);
+            return RedirectToAction("Index");
+        }
         public IActionResult GorevlendirPersonel(PersonelGorevlendirViewModel model)
         {
+            TempData["Active"] = "isemri";
             var user= _userManager.Users.FirstOrDefault(x => x.Id == model.PersonelId);
             var gorev = _gorevService.GetirAciliyetIdile(model.GorevId);
             AppUserListViewModel userModel = new AppUserListViewModel();

@@ -48,13 +48,15 @@
     </div>
 
     <div class="col-md-12">
-        <form>
+        <form asp-action="AtaPersonel" method="post">
             <p class="lead">
                 Yukarıdaki göreve ilgili personel atanacaktır. Bu işlemi gerçekleştirmek istediğinizden emin misiniz?
             </p>
             <div class="form-group text-center">
-                <a class="btn btn-warning btn-sm">Hayır Vazgeç</a>
-                <button class="btn btn-primary btn-sm">Evet Görevlendir</button>
+                <a asp-action="AtaPersonel" asp-route-id="@Model.Gorev.Id" class="btn btn-warning btn-sm">Hayır Vazgeç</a>
+                <input type="hidden" name="PersonelId" value="@Model.AppUser.Id" />
+                <input type="hidden" name="GorevId" value="@Model.Gorev.Id" />
+                <button type="submit" class="btn btn-primary">Evet Görevlendir</button>
             </div>
 
 
