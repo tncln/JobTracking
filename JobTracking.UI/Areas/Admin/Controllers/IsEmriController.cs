@@ -2,6 +2,7 @@
 using JobTracking.Entity.Concrete;
 using JobTracking.UI.Areas.Admin.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,12 @@ namespace JobTracking.UI.Areas.Admin.Controllers
     {
         private readonly IAppUserService _appUserService;
         private readonly IGorevService _gorevService;
-        public IsEmriController(IAppUserService appUserService, IGorevService gorevService)
+        private readonly UserManager<AppUser> _userManager;
+        public IsEmriController(IAppUserService appUserService, IGorevService gorevService, UserManager<AppUser> userManager)
         {
             _appUserService = appUserService;
             _gorevService = gorevService;
+            _userManager = userManager;
         }
         public IActionResult Index()
         {
@@ -80,6 +83,28 @@ namespace JobTracking.UI.Areas.Admin.Controllers
             gorevModel.Aciliyet = gorev.Aciliyet;
             gorevModel.OlusturmaTarihi = gorev.OlusturulmaTarihi;
             return View(gorevModel);
+        }
+        public IActionResult GorevlendirPersonel(PersonelGorevlendirViewModel model)
+        {
+            var user= _userManager.Users.FirstOrDefault(x => x.Id == model.PersonelId);
+            var gorev = _gorevService.GetirAciliyetIdile(model.GorevId);
+            AppUserListViewModel userModel = new AppUserListViewModel();
+            userModel.Id = user.Id;
+            userModel.Name = user.Name;
+            userModel.Picture = user.Picture;
+            userModel.SurName = user.Surname;
+            userModel.Email = user.Email;
+
+            GorevListViewModel gorevModel = new GorevListViewModel();
+            gorevModel.Id = gorev.Id;
+            gorevModel.Aciklama = gorev.Aciklama;
+            gorevModel.Aciliyet = gorev.Aciliyet;
+            gorevModel.Ad = gorev.Ad;
+
+            PersonelGorevlendirListViewModel personelGorevlendirModel = new PersonelGorevlendirListViewModel();
+            personelGorevlendirModel.AppUser = userModel;
+            personelGorevlendirModel.Gorev = gorevModel;
+            return View(personelGorevlendirModel);
         }
     }
 }

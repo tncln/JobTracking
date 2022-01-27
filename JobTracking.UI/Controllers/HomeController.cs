@@ -39,11 +39,11 @@ namespace JobTracking.UI.Controllers
                         var roller=await _userManager.GetRolesAsync(user);
                        if(roller.Contains("Admin"))
                         {
-                            return RedirectToAction("Index", "Home", new { area = "Admin" });
+                            return RedirectToAction("Index", "Home", new { Area = "Admin" });
                         }
                         else
                         {
-                            return RedirectToAction("Index", "Home", new { area = "Member" });
+                            return RedirectToAction("Index", "Home", new { Area = "Member" });
                         }
                     }
                 }
