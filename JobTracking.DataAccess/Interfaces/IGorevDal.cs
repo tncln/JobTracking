@@ -10,5 +10,6 @@ namespace JobTracking.DataAccess.Interfaces
         List<Gorev> GetirAciliyetIleTamamlanmayan();
         List<Gorev> GetirTumTablolarla();
         Gorev GetirAciliyetIdile(int id);
+        List<Gorev> GetirAppUserIdile(int appUserId);
     }
 }

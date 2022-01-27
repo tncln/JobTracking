@@ -36,6 +36,11 @@ namespace JobTracking.Business.Concrete
             return _gorevDal.GetirIdile(id);
         }
 
+        public List<Gorev> GetirileAppUserId(int appUserId)
+        {
+            return _gorevDal.GetirAppUserIdile(appUserId);
+        }
+
         public List<Gorev> GetirTumTablolarla()
         {
             return _gorevDal.GetirTumTablolarla();

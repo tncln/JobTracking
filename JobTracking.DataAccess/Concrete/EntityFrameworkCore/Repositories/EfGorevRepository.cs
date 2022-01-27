@@ -22,6 +22,11 @@ namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories
             using var context = new TodoContext();
             return context.Gorevler.Include(x => x.Aciliyet)
                 .Where(x => !x.Durum).OrderByDescending(x => x.OlusturulmaTarihi).ToList();
+        } 
+        public List<Gorev> GetirAppUserIdile(int appUserId)
+        {
+            using var context = new TodoContext();
+            return context.Gorevler.Where(x => x.AppUserId == appUserId).ToList();
         }
 
         public List<Gorev> GetirTumTablolarla()
