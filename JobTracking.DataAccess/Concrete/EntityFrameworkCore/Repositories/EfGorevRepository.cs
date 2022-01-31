@@ -16,6 +16,11 @@ namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories
             using var context = new TodoContext();
             return context.Gorevler.Include(x => x.Aciliyet).FirstOrDefault(y => !y.Durum && y.Id == id);
         }
+        public Gorev GetirRaporlarileId(int id)
+        {
+            using var context = new TodoContext();
+            return context.Gorevler.Include(x => x.Raporlar).Include(x=>x.AppUser).Where(x => x.Id == id).FirstOrDefault() ;
+        }
 
         public List<Gorev> GetirAciliyetIleTamamlanmayan()
         {

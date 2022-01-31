@@ -45,7 +45,17 @@ namespace JobTracking.UI.Areas.Admin.Controllers
             }
             return View(models);
         }
-
+        public IActionResult Detaylandir(int id)
+        {
+            var gorev= _gorevService.GetirRaporlarileId(id);
+            GorevListAllViewModel model = new GorevListAllViewModel();
+            model.Id = gorev.Id; 
+            model.Raporlar = gorev.Raporlar; 
+            model.Ad = gorev.Ad;
+            model.Aciklama = gorev.Aciklama;
+            model.AppUser = gorev.AppUser;
+            return View(model);
+        }
         public IActionResult AtaPersonel(int id,string s,int sayfa=1)
         {
             TempData["Active"] = "isemri";
