@@ -32,7 +32,7 @@
     <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
-        <div class="border-right" id="sidebar-wrapper">
+        <div class="border border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">Admin Layout </div>
             <div class="list-group list-group-flush">
                 <a asp-controller="Gorev" asp-action="Index" class="list-group-item list-group-item-action  @(active=="gorev"?"active":"")"><i class="fas fa-tasks mr-2"></i> Görev İşlemleri</a>
@@ -47,8 +47,8 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+            <nav class="navbar navbar-expand-lg navbar-light border border-dark border-left-0 border-top-0 border-right-0">
+                <button class="btn btn-outline-primary btn-sm" id="menu-toggle"><i class="fas fa-exchange-alt mr-2"></i> Menü</button>
 
                 @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
