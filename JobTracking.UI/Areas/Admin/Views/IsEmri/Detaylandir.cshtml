@@ -5,23 +5,24 @@
 }
 
 @if (Model.Raporlar.Count > 0) {
-    <table class="table table-hover table-sm mt-2 text-center table-bordered">
+<table class="table table-hover table-sm mt-2 text-center table-bordered">
+    <tr>
+        <th colspan="2">@Model.AppUser.Name @Model.AppUser.Surname Personelinizin @Model.Ad görevine yazmış olduğu raporlar</th>
+    </tr>
+    <tr>
+        <th>Tanim</th>
+        <th>Detay</th>
+    </tr>
+    @foreach (var rapor in Model.Raporlar)
+    {
+        <a class="btn btn-outline-warning my-2 mr-2"><i class="fas fa-file-excel mr-2"></i> Excelde</a>
+        <a class="btn btn-outline-warning my-2"><i class="fas fa-file-pdf mr-2"></i> PDF</a>
         <tr>
-            <th colspan="2">@Model.AppUser.Name @Model.AppUser.Surname Personelinizin @Model.Ad görevine yazmış olduğu raporlar</th>
+            <td>@rapor.Tanim</td>
+            <td>@rapor.Detay</td>
         </tr>
-        <tr>
-            <th>Tanim</th>
-            <th>Detay</th> 
-        </tr>
-        @foreach (var rapor in Model.Raporlar)
-        {
-            <a class="btn btn-info mt-2">Excelde Görüntüle</a>
-            <tr>
-                <td>@rapor.Tanim</td>
-                <td>@rapor.Detay</td>
-            </tr>
-        }
-    </table>
+    }
+</table>
 }else{
 <div class="border border-dark mt-2 text-center">
     @Model.AppUser.Name @Model.AppUser.Surname personeliniz şuanda @Model.Ad görevi üzerinde çalışıyor. Henüz bir rapor yazmadı.
