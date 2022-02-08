@@ -15,8 +15,8 @@
     </tr>
     @foreach (var rapor in Model.Raporlar)
     {
-        <a class="btn btn-outline-warning my-2 mr-2"><i class="fas fa-file-excel mr-2"></i> Excelde</a>
-        <a class="btn btn-outline-warning my-2"><i class="fas fa-file-pdf mr-2"></i> PDF</a>
+        <a asp-action="GetirExcel" asp-route-id="@Model.Id" target="_blank" class="btn btn-outline-warning my-2 mr-2"><i class="fas fa-file-excel mr-2"></i> Excelde</a>
+        <a asp-action="GetirPdf" asp-route-id="@Model.Id" target="_blank" class="btn btn-outline-warning my-2"><i class="fas fa-file-pdf mr-2"></i> PDF</a>
         <tr>
             <td>@rapor.Tanim</td>
             <td>@rapor.Detay</td>

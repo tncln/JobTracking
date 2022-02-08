@@ -34,6 +34,7 @@ namespace JobTracking.UI
             services.AddScoped<IAciliyetService, AciliyetManager>();
             services.AddScoped<IRaporService, RaporManager>();
             services.AddScoped<IAppUserService, AppUserManager>();
+            services.AddScoped<IDosyaService, DosyaManager>();
 
             //Dal
             services.AddScoped<IGorevDal, EfGorevRepository>();

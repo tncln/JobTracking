@@ -18,11 +18,13 @@ namespace JobTracking.UI.Areas.Admin.Controllers
         private readonly IAppUserService _appUserService;
         private readonly IGorevService _gorevService;
         private readonly UserManager<AppUser> _userManager;
-        public IsEmriController(IAppUserService appUserService, IGorevService gorevService, UserManager<AppUser> userManager)
+        private readonly IDosyaService _dosyaService;
+        public IsEmriController(IAppUserService appUserService, IGorevService gorevService, UserManager<AppUser> userManager, IDosyaService dosyaService)
         {
             _appUserService = appUserService;
             _gorevService = gorevService;
             _userManager = userManager;
+            _dosyaService = dosyaService;
         }
         public IActionResult Index()
         {
@@ -94,6 +96,15 @@ namespace JobTracking.UI.Areas.Admin.Controllers
             gorevModel.Aciliyet = gorev.Aciliyet;
             gorevModel.OlusturmaTarihi = gorev.OlusturulmaTarihi;
             return View(gorevModel);
+        }
+        public IActionResult GetirExcel(int id)
+        { 
+            return File(_dosyaService.AktarExcel(_gorevService.GetirRaporlarileId(id).Raporlar),"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",Guid.NewGuid()+".xlsx");
+        }
+        public IActionResult GetirPdf(int id)
+        {
+            var path = _dosyaService.AktarPdf(_gorevService.GetirRaporlarileId(id).Raporlar);
+            return File(path,"application/pdf",Guid.NewGuid()+".pdf");
         }
         [HttpPost]
         public IActionResult AtaPersonel(PersonelGorevlendirViewModel model)
