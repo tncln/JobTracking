@@ -21,6 +21,7 @@ namespace JobTracking.UI.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            TempData["Active"] = "profil";
             var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
             AppUserListViewModel model = new AppUserListViewModel();
             model.Id = appUser.Id;
