@@ -3,8 +3,16 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
-<form class="w-75 mx-auto p-3">
+@if (TempData["message"] != null) { 
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+         @TempData["message"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+<form asp-action="Index" method="post" class="w-75 mx-auto p-3" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.Id" />
     <div class="form-group">
         <label asp-for="@Model.Name"></label>
         <span asp-validation-for="@Model.Name"></span>
@@ -38,7 +46,7 @@
             </div>
             <div class="col-md-12">
                 <label> Resim Seç:</label>
-                <input type="file" class="form-control-file" name="Resim" id="Resim" />
+                <input type="file" class="form-control-file" name="resim" id="Resim" />
             </div>
         </div>
     </div>
