@@ -57,7 +57,7 @@ namespace JobTracking.UI.Areas.Admin.Controllers
                 if (result.Succeeded)
                 {
                     TempData["message"] = "Güncelleme İşleminiz Başarı ile Gerçekleştirildi.";
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index"); 
                 }
                 foreach (var item in result.Errors)
                 {

@@ -91,5 +91,10 @@ namespace JobTracking.UI.Controllers
             }
             return View(model);
         }
+        public async Task<IActionResult> CikisYap()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index");
+        }
     }
 }
