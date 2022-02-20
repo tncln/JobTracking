@@ -10,10 +10,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JobTracking.UI.Areas.Member.Controllers
+namespace JobTracking.UI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Area("Member")]
+    [Authorize(Roles = "Member")]
     public class ProfilController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -30,7 +30,7 @@ namespace JobTracking.UI.Areas.Member.Controllers
             model.Name = appUser.Name;
             model.SurName = appUser.Surname;
             model.Picture = appUser.Picture;
-            model.Email = appUser.Email; 
+            model.Email = appUser.Email;
 
             return View(model);
         }
