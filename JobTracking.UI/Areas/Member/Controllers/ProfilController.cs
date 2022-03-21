@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JobTracking.UI.Areas.Admin.Controllers
+namespace JobTracking.UI.Areas.Member.Controllers
 {
     [Area("Member")]
     [Authorize(Roles = "Member")]
