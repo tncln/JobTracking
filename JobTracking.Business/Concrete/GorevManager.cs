@@ -4,6 +4,7 @@ using JobTracking.DataAccess.Interfaces;
 using JobTracking.Entity.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace JobTracking.Business.Concrete
@@ -54,6 +55,11 @@ namespace JobTracking.Business.Concrete
         public List<Gorev> GetirTumTablolarla()
         {
             return _gorevDal.GetirTumTablolarla();
+        }
+
+        public List<Gorev> GetirTumTablolarla(Expression<Func<Gorev, bool>> filter)
+        {
+            return _gorevDal.GetirTumTablolarla(filter);
         }
 
         public void Guncelle(Gorev tablo)
