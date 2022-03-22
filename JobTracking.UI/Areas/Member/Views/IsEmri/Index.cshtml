@@ -2,18 +2,59 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+    int index = 0;
 }
 
 @foreach (var gorev in Model)
 {
-    <div class="card">
+    index++;
+    <div class="card my-1">
         <h5 class="card-header">@gorev.Ad</h5>
         <div class="card-body">
-            <h5 class="card-title">@gorev.Aciliyet.Tanim</h5>
+            <h5 class="card-title"><span class="text-danger">Aciliyet Durumu</span> @gorev.Aciliyet.Tanim</h5>
             <p class="card-text">@gorev.Aciklama</p>
-            <a href="#" class="btn btn-primary">Raporlara Git
-            <span class="badge badge-dark">@gorev.Raporlar.Count</span></a>
-            <a href="#" class="btn btn-primary">Tamamlandı İşaretle</a>
+
+
+            <p class="text-right">
+                @if (gorev.Raporlar.Count > 0)
+                {
+                    <a class="btn btn-light btn-sm" data-bs-toggle="collapse" href="#collapseExample-@index" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Raporlara Git <i class="fas fa-caret-down ml-2"></i>
+                        <span class="badge badge-dark">@gorev.Raporlar.Count</span>
+                    </a>
+                }
+                else
+                {
+                    <span class="lead font-weight-bold font-italic p-2 d-block text-left mb-1" >
+                        Hiç Rapor Yazılmadı! Görevdeki ilerlemelerden bahsedin. 
+                    </span>
+                    <a href="" class="btn btn-light btn-sm">Rapor Yaz</a>
+                }
+
+
+
+                <a href="#" class="btn btn-dark btn-sm">Tamamlandı İşaretle</a>
+            </p>
+            <div class="collapse" id="collapseExample-@index">
+                <table class="table table-hover table-bordered table-sm">
+                    <tr>
+                        <th>Ad</th>
+                        <th>Tanım</th>
+                        <th>İşlem</th>
+                    </tr>
+                    @foreach (var rapor in gorev.Raporlar)
+                    {
+                        <tr>
+                            <td>@rapor.Tanim</td>
+                            <td>@rapor.Detay</td>
+                            <td><a href="">Düzenle</a></td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+
+            
         </div>
     </div>
 }
