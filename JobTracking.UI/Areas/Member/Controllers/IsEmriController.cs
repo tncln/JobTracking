@@ -54,5 +54,19 @@ namespace JobTracking.UI.Areas.Member.Controllers
             model.Gorev = gorev;
             return View(model);
         }
+        [HttpPost]
+        public IActionResult EkleRapor(RaporAddViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _raporService.Kaydet( new Rapor() { 
+                    GorevId=model.GorevId,
+                    Detay=model.Detay,
+                    Tanim=model.Tanim
+                });
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
     }
 }
