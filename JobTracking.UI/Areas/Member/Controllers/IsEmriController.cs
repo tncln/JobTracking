@@ -47,9 +47,12 @@ namespace JobTracking.UI.Areas.Member.Controllers
         }
         public IActionResult EkleRapor(int id)
         {
+            TempData["Active"] = "isemri";
+            var gorev= _gorevService.GetirAciliyetIdile(id);
             RaporAddViewModel model = new RaporAddViewModel();
             model.GorevId = id;
-            return View();
+            model.Gorev = gorev;
+            return View(model);
         }
     }
 }

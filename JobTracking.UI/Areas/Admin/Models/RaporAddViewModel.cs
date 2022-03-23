@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobTracking.Entity.Concrete;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace JobTracking.UI.Areas.Admin.Models
         [Display(Name ="Detay :")]
         [Required(ErrorMessage = "Detay Alanı Boş Geçilemez")]
         public string Detay { get; set; }
-
+        public Gorev Gorev { get; set; }
         public int GorevId { get; set; }
     }
 }
