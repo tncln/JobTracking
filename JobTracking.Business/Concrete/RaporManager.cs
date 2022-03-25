@@ -15,6 +15,12 @@ namespace JobTracking.Business.Concrete
         {
             _raporDal = raporDal;
         }
+
+        public Rapor GetirGorevileId(int id)
+        {
+            return _raporDal.GetirGorevileId(id);
+        }
+
         public List<Rapor> Getirhepsi()
         {
             return _raporDal.Getirhepsi();

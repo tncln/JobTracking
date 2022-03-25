@@ -1,6 +1,6 @@
-﻿@model RaporAddViewModel
+﻿@model RaporUpdateViewModel
 @{
-    ViewData["Title"] = "EkleRapor";
+    ViewData["Title"] = "GuncelleRapor";
     Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
 }
 
@@ -12,11 +12,11 @@
     </div>
 </div>
 
-<form asp-action="EkleRapor" method="post" class="p-3">
+<form asp-action="GuncelleRapor" method="post" class="p-3">
 
 
 
-    <input type="hidden" asp-for="@Model.GorevId" />
+    <input type="hidden" asp-for="@Model.Id" />
     <div class="form-group">
         <label asp-for="@Model.Tanim"></label>
         <span asp-validation-for="@Model.Tanim"></span>
@@ -34,7 +34,8 @@
     </div>
 </form>
 
-@section JavaScript{ 
+@section JavaScript{
     <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
     <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
 }
+

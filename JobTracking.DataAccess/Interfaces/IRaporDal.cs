@@ -7,5 +7,6 @@ namespace JobTracking.DataAccess.Interfaces
 {
     public interface IRaporDal:IGenericDal<Rapor>
     {
+        Rapor GetirGorevileId(int id);
     }
 }

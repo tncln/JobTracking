@@ -57,6 +57,7 @@ namespace JobTracking.UI.Areas.Member.Controllers
         [HttpPost]
         public IActionResult EkleRapor(RaporAddViewModel model)
         {
+            TempData["Active"] = "isemri";
             if (ModelState.IsValid)
             {
                 _raporService.Kaydet( new Rapor() { 
@@ -64,6 +65,32 @@ namespace JobTracking.UI.Areas.Member.Controllers
                     Detay=model.Detay,
                     Tanim=model.Tanim
                 });
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+        public IActionResult GuncelleRapor(int id)
+        {
+            TempData["Active"] = "isemri";
+            var rapor= _raporService.GetirGorevileId(id);
+            RaporUpdateViewModel model = new RaporUpdateViewModel();
+            model.Id = rapor.Id;
+            model.Tanim = rapor.Tanim;
+            model.Detay = rapor.Detay;
+            model.Gorev = rapor.Gorev;
+            model.GorevId = rapor.GorevId;
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult GuncelleRapor(RaporUpdateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var guncellenecekRapor= _raporService.GetirIdile(model.Id); 
+                guncellenecekRapor.Tanim = model.Tanim;
+                guncellenecekRapor.Detay = model.Detay;
+
+                _raporService.Guncelle(guncellenecekRapor);
                 return RedirectToAction("Index");
             }
             return View(model);
