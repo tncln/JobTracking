@@ -29,6 +29,8 @@ namespace JobTracking.UI.Areas.Member.Controllers
             int toplamSayfa;
             var gorevler= _gorevService.GetirTumTablolarlaTamamlanmayan(out toplamSayfa, user.Id, aktifSayfa);
 
+            ViewBag.ToplamSayfa = toplamSayfa;
+            ViewBag.AktifSayfa = aktifSayfa;
             List<GorevListAllViewModel> models = new List<GorevListAllViewModel>();
             foreach (var gorev in gorevler)
             {

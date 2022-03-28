@@ -52,10 +52,10 @@ namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories
         public List<Gorev> GetirTumTablolarlaTamamlanmayan(out int toplamSayfa, int userId,int aktifSayfa=1)
         {
             using var context = new TodoContext();
-             var returnValue= context.Gorevler.Include(x => x.Aciliyet).Include(I => I.Raporlar).Include(I => I.AppUser)
-                .Where(x=>x.AppUserId==userId && x.Durum).OrderByDescending(x => x.OlusturulmaTarihi).Skip((1-aktifSayfa)*3).Take(3);
+            var returnValue = context.Gorevler.Include(x => x.Aciliyet).Include(I => I.Raporlar).Include(I => I.AppUser)
+               .Where(x => x.AppUserId == userId && x.Durum).OrderByDescending(x => x.OlusturulmaTarihi);
             toplamSayfa =(int) Math.Ceiling((double)returnValue.Count() / 3);
-            return returnValue.ToList();
+            return returnValue.Skip((aktifSayfa - 1) * 3).Take(3).ToList();
         }
     }
 }
