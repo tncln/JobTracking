@@ -1,6 +1,7 @@
 ﻿using JobTracking.Business.Interfaces;
 using JobTracking.Entity.Concrete;
 using JobTracking.UI.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace JobTracking.UI.Areas.Member.Controllers
 {
+    [Authorize("Member")]
     [Area("Member")]
     public class IsEmriController : Controller
     {

@@ -33,7 +33,7 @@ namespace JobTracking.UI
                     UserName = "adem",
                     Email = "tuncalin@outlook.com"
                 };
-               var x= await userManager.CreateAsync(user, "1234567");
+               var x= await userManager.CreateAsync(user, "1");
                 await userManager.AddToRoleAsync(user, "Admin");
             }
         }
