@@ -18,20 +18,22 @@ namespace JobTracking.UI.Areas.Member.Controllers
         private readonly IGorevService _gorevService;
         private readonly UserManager<AppUser> _userManager;
         private readonly IRaporService _raporService;
-        public IsEmriController(IGorevService gorevService, UserManager<AppUser> userManager, IRaporService raporService)
+        private readonly IBildirimService _bildirimService;
+        public IsEmriController(IGorevService gorevService, UserManager<AppUser> userManager, IRaporService raporService, IBildirimService bildirimService)
         {
             _gorevService = gorevService;
             _userManager = userManager;
             _raporService = raporService;
+            _bildirimService = bildirimService;
         }
         public async Task<IActionResult> Index()
         {
             TempData["Active"] = "isemri";
 
-            var user= await _userManager.FindByNameAsync(User.Identity.Name);
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            var gorevler= _gorevService.GetirTumTablolarla(I => I.AppUserId == user.Id && !I.Durum);
-           List< GorevListAllViewModel> models = new List<GorevListAllViewModel>();
+            var gorevler = _gorevService.GetirTumTablolarla(I => I.AppUserId == user.Id && !I.Durum);
+            List<GorevListAllViewModel> models = new List<GorevListAllViewModel>();
 
             foreach (var item in gorevler)
             {
@@ -50,23 +52,37 @@ namespace JobTracking.UI.Areas.Member.Controllers
         public IActionResult EkleRapor(int id)
         {
             TempData["Active"] = "isemri";
-            var gorev= _gorevService.GetirAciliyetIdile(id);
+            var gorev = _gorevService.GetirAciliyetIdile(id);
             RaporAddViewModel model = new RaporAddViewModel();
             model.GorevId = id;
             model.Gorev = gorev;
             return View(model);
         }
         [HttpPost]
-        public IActionResult EkleRapor(RaporAddViewModel model)
+        public async Task<IActionResult> EkleRapor(RaporAddViewModel model)
         {
             TempData["Active"] = "isemri";
             if (ModelState.IsValid)
             {
-                _raporService.Kaydet( new Rapor() { 
-                    GorevId=model.GorevId,
-                    Detay=model.Detay,
-                    Tanim=model.Tanim
+                _raporService.Kaydet(new Rapor()
+                {
+                    GorevId = model.GorevId,
+                    Detay = model.Detay,
+                    Tanim = model.Tanim
                 });
+
+                var adminUserList = await _userManager.GetUsersInRoleAsync("Admin");
+                var aktifKullanici = await _userManager.FindByNameAsync(User.Identity.Name);
+                foreach (var admin in adminUserList)
+                {
+                    _bildirimService.Kaydet(new Bildirim
+                    {
+                        Aciklama = $"{aktifKullanici.Name} {aktifKullanici.Surname} yeni bir rapor yazdı ",
+                        AppUserId=admin.Id,
+
+                    });
+                }
+
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -74,7 +90,7 @@ namespace JobTracking.UI.Areas.Member.Controllers
         public IActionResult GuncelleRapor(int id)
         {
             TempData["Active"] = "isemri";
-            var rapor= _raporService.GetirGorevileId(id);
+            var rapor = _raporService.GetirGorevileId(id);
             RaporUpdateViewModel model = new RaporUpdateViewModel();
             model.Id = rapor.Id;
             model.Tanim = rapor.Tanim;
@@ -88,7 +104,7 @@ namespace JobTracking.UI.Areas.Member.Controllers
         {
             if (ModelState.IsValid)
             {
-                var guncellenecekRapor= _raporService.GetirIdile(model.Id); 
+                var guncellenecekRapor = _raporService.GetirIdile(model.Id);
                 guncellenecekRapor.Tanim = model.Tanim;
                 guncellenecekRapor.Detay = model.Detay;
 
@@ -97,11 +113,24 @@ namespace JobTracking.UI.Areas.Member.Controllers
             }
             return View(model);
         }
-        public IActionResult TamamlaGorev(int gorevId)
+        public async Task<IActionResult> TamamlaGorev(int gorevId)
         {
-            var guncellenecekGorev= _gorevService.GetirIdile(gorevId);
+            var guncellenecekGorev = _gorevService.GetirIdile(gorevId);
             guncellenecekGorev.Durum = true;
             _gorevService.Guncelle(guncellenecekGorev);
+
+            var adminUserList = await _userManager.GetUsersInRoleAsync("Admin");
+            var aktifKullanici = await _userManager.FindByNameAsync(User.Identity.Name);
+            foreach (var admin in adminUserList)
+            {
+                _bildirimService.Kaydet(new Bildirim
+                {
+                    Aciklama = $"{aktifKullanici.Name} {aktifKullanici.Surname} vermiş olduğunuz görevi tamamladı ",
+                    AppUserId = admin.Id,
+
+                });
+            }
+
             return Json(null);
         }
     }
