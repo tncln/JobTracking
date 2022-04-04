@@ -130,7 +130,7 @@ namespace JobTracking.UI.Areas.Member.Controllers
 
                 });
             }
-
+            //güncel versiyon
             return Json(null);
         }
     }
