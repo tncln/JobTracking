@@ -12,6 +12,7 @@ namespace JobTracking.Entity.Concrete
         public string Surname { get; set; }
         public string Picture { get; set; } = "default.png";
 
+        public List<Bildirim> Bildirimler { get; set; }
         public List<Gorev> Gorevler { get; set; }
     }
 }
