@@ -8,6 +8,7 @@ namespace JobTracking.Entity.Concrete
     public class Bildirim:ITablo
     {
         public int Id { get; set; }
+
         public string Aciklama { get; set; }
         public bool Durum { get; set; }
         public int AppUserId { get; set; }

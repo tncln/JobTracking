@@ -31,7 +31,7 @@ namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<Gorev> Gorevler { get; set; }
         public DbSet<Aciliyet> Aciliyetler { get; set; }
         public DbSet<Rapor> Raporlar { get; set; }
-        public DbSet<Bildirim> Bildirimler { get; set; }
+        public DbSet<Bildirim> Bildirim { get; set; }
 
         //Fluent Apiden farklı bir yöntem
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
