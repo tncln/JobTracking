@@ -31,7 +31,7 @@ namespace JobTracking.UI.Areas.Member.Controllers
             model.SurName = appUser.Surname;
             model.Picture = appUser.Picture;
             model.Email = appUser.Email;
-
+            //test
             return View(model);
         }
         [HttpPost]
