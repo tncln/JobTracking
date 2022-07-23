@@ -13,7 +13,7 @@ namespace JobTracking.DataAccess.Concrete.EntityFrameworkCore.Repositories
         public List<Bildirim> GetirOkunmayanlar(int AppUserId)
         {
             using var context = new TodoContext();
-            return context.Bildirimler.Where(x=>x.AppUserId==AppUserId && !x.Durum).ToList()
+            return context.Bildirimler.Where(x => x.AppUserId == AppUserId && !x.Durum).ToList();
         }
     }
 }
