@@ -7,5 +7,6 @@ namespace JobTracking.DataAccess.Interfaces
 {
     public interface IBildirimDal:IGenericDal<Bildirim>
     {
+        List<Bildirim> GetirOkunmayanlar(int AppUserId); 
     }
 }

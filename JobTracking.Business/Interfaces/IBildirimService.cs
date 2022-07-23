@@ -6,6 +6,7 @@ using System.Text;
 namespace JobTracking.Business.Interfaces
 {
     public interface IBildirimService :IGenericService<Bildirim>
-    {
+    { 
+        List<Bildirim> GetirOkunmayanlar(int AppUserId);
     }
 }
