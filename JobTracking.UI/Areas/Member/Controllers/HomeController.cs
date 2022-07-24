@@ -13,6 +13,7 @@ namespace JobTracking.UI.Areas.Member.Controllers
     {
         public IActionResult Index()
         {
+            TempData["Active"]="anasayfa";
             return View();
         }
     }
