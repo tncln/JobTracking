@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JobTracking.UI.Areas.Member.Controllers
+namespace JobTracking.UI.Areas.Admin.Controllers
 {
-    [Authorize(Roles ="Member")]
-    [Area("Member")]
+    [Authorize(Roles ="Admin")]
+    [Area("Admin")]
     public class BildirimController : Controller
     {
        private readonly IBildirimService _bildirimService;
